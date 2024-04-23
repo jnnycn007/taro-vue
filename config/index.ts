@@ -4,6 +4,7 @@ import devConfig from './dev'
 import prodConfig from './prod'
 import Components from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/auto-import-resolver'
+import path from 'path'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
@@ -11,9 +12,12 @@ export default defineConfig(async (merge, { command, mode }) => {
     projectName: 'taro-vue',
     date: '2024-4-15',
     designWidth (input) {
+      // 配置 NutUI 375 尺寸
+      // @ts-ignore
       if (input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
         return 375
       }
+      // 全局使用 Taro 默认的 750 尺寸
       return 750
     },
     deviceRatio: {
@@ -24,9 +28,14 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
+    // 开启 HTML 插件
     plugins: ['@tarojs/plugin-html'],
-    plugins: [],
     defineConstants: {
+    },
+    alias: {
+      '@/apis': path.resolve(__dirname, '..', 'src/apis'),
+      '@/images': path.resolve(__dirname, '..', 'src/images'),
+      '@/utils': path.resolve(__dirname, '..', 'src/utils')
     },
     copy: {
       patterns: [
@@ -36,23 +45,27 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     framework: 'vue3',
     compiler: 'webpack5',
-    sass:{
-      data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`
-    },
     cache: {
-      enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
+      enable: true // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
       webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         chain.plugin('unplugin-vue-components').use(Components({
           resolvers: [
             NutUIResolver({
-              importStyle: 'sass',
               taro: true
             })
           ]
         }))
-        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      },
+      lessLoaderOption: { // 配置全局less变量
+        lessOptions: {
+          modifyVars: {
+            themeColor: '#A83034', // 主题色
+            linkColor: '#008EEE' // 链接色
+          }
+        }
       },
       postcss: {
         pxtransform: {
@@ -78,15 +91,14 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     h5: {
       webpackChain(chain) {
+        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         chain.plugin('unplugin-vue-components').use(Components({
           resolvers: [
             NutUIResolver({
-              importStyle: 'sass',
               taro: true
             })
           ]
         }))
-        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
       },
       publicPath: '/',
       staticDirectory: 'static',

@@ -1,19 +1,18 @@
 <template>
-  <view class="index">
-    <text>{{ msg }}</text>
+  <view>
   </view>
 </template>
-
-<script>
+<script setup lang="ts">
 import { ref } from 'vue'
-import './index.less'
+import Taro, { usePullDownRefresh } from '@tarojs/taro'
+const show = ref(false);
 
-export default {
-  setup () {
-    const msg = ref('Hello world')
-    return {
-      msg
-    }
-  }
-}
+usePullDownRefresh(() => {
+  setTimeout(() => {
+    Taro.stopPullDownRefresh()
+  }, 1000)
+})
+const click = () => {
+  show.value = true;
+};
 </script>
