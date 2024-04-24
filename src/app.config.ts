@@ -7,6 +7,15 @@ export default defineAppConfig({
     'pages/find/index',
     'pages/my/index'
   ],
+  subpackages: [
+    {
+      root: 'subpackages',
+      pages: [
+        'login/index'
+      ]
+      // independent: true
+    }
+  ],
   window: {
     backgroundTextStyle: '@bgTxtStyle',
     navigationBarBackgroundColor: '#fff',

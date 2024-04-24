@@ -4,7 +4,7 @@ import devConfig from './dev'
 import prodConfig from './prod'
 import Components from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/auto-import-resolver'
-import path from 'path'
+// import path from 'path'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
@@ -33,9 +33,9 @@ export default defineConfig(async (merge, { command, mode }) => {
     defineConstants: {
     },
     alias: {
-      '@/apis': path.resolve(__dirname, '..', 'src/apis'),
-      '@/images': path.resolve(__dirname, '..', 'src/images'),
-      '@/utils': path.resolve(__dirname, '..', 'src/utils')
+      // '@/apis': path.resolve(__dirname, '..', 'src/apis'),
+      // '@/images': path.resolve(__dirname, '..', 'src/images'),
+      // '@/utils': path.resolve(__dirname, '..', 'src/utils')
     },
     copy: {
       patterns: [
@@ -62,8 +62,9 @@ export default defineConfig(async (merge, { command, mode }) => {
       lessLoaderOption: { // 配置全局less变量
         lessOptions: {
           modifyVars: {
-            themeColor: '#A83034', // 主题色
-            linkColor: '#008EEE' // 链接色
+            themeColor: '#1677FF', // 主题色
+            linkColor: '#008EEE', // 链接色
+            textColor: 'rgba(0, 0, 0, 0.88)'
           }
         }
       },

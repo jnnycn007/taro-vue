@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import Taro from '@tarojs/taro'
-import { computed }  from 'vue'
-import { useStore } from 'vuex'
+import { useSelectedStore } from '@/stores/selected'
 import { IconFont } from '@nutui/icons-vue-taro'
 
-const store = useStore()
-const selectedIndex = computed(() => store.getters.getSelected)
+const store = useSelectedStore()
+const { selected } = storeToRefs(store)
+console.log('selected', selected)
 
 const color = '#AAAAAA'
 const activeColor = '#000000'
@@ -26,19 +27,29 @@ const tabBarList = [
     url: '/pages/my/index'
   }
 ]
-function switchTab (index, url) {
-  store.dispatch('setSelected', index)
-  Taro.switchTab({ url })
+function switchTab (index: number, url: string) {
+  const isUserLoggedIn = Taro.getStorageSync('isUserLoggedIn') || false
+  const loginInterception = ['/pages/find/index', '/pages/my/index']
+  console.log('index', index)
+  console.log('url', url)
+  if (!isUserLoggedIn && loginInterception.includes(url)) {
+    Taro.navigateTo({
+      url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${encodeURIComponent(index)}`
+    })
+  } else {
+    store.setSelected(index)
+    Taro.switchTab({ url })
+  }
 }
 </script>
 <template>
   <view class="m-tab-bar">
     <view
       class="m-tab-bar-item"
-      @tap="switchTab(index, item.url)"
-      v-for="(item, index) in tabBarList" :key="index">
-      <IconFont class="u-icon" :name="item.icon" :color="selectedIndex === index ? activeColor : color" />
-      <text class="u-view" :style="{ color: selectedIndex === index ? activeColor : color }">{{ item.text }}</text>
+      v-for="(item, index) in tabBarList" :key="index"
+      @tap="switchTab(index, item.url)">
+      <IconFont class="u-icon" :name="item.icon" :color="selected === index ? activeColor : color" />
+      <text class="u-view" :style="{ color: selected === index ? activeColor : color }">{{ item.text }}</text>
     </view>
   </view>
 </template>
@@ -68,6 +79,7 @@ function switchTab (index, url) {
     .u-view {
       font-weight: 400;
       font-size: 24px;
+      line-height: 32px;
     }
   }
 }
