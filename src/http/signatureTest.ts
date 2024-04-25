@@ -1,8 +1,7 @@
 import md5 from 'md5'
-const secret = '4b6fab7c41c8ad8a17cf36d4ed9dc72a'
-export const appkeyTest = 'collect_wet_c937d9'
-// const secret = 'f98b12a98e3e226750e63aafc0638a24'
-// export const appkeyTest = 'gy_website_5ef9227'
+const secret = '12345secret'
+export const appkeyTest = '12345appkey'
+
 export function getSigncodeTest (params: any, type: string) {
   let str = ''
   if (Object.prototype.toString.call(params) === '[object FormData]') {
