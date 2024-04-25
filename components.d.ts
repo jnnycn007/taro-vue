@@ -7,6 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    NutUploader: typeof import('@nutui/nutui-taro')['Uploader']
+    Swiper: typeof import('./src/components/Swiper.vue')['default']
   }
 }

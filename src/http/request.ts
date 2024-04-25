@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { encryptData } from './encrypt'
 
 console.log('NODE_ENV', process.env.NODE_ENV)
 console.log('TARO_APP_PROXY', process.env.TARO_APP_PROXY)
@@ -21,7 +22,7 @@ export function request (params: RequestParams) {
   })
   return new Promise((resolve)=>{
     Taro.request({
-      data: data,
+      data: encryptData(data, method),
       url: baseUrl + url,
       method: method,
       timeout: timeout,

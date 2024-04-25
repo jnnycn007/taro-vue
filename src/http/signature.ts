@@ -1,12 +1,18 @@
 import md5 from 'md5'
-const secret = '4b6fab7c41c8ad8a17cf36d4ed9dc72a'
-export const appkeyTest = 'collect_wet_c937d9'
-// const secret = '12345secret'
+
+const secretProd = '12345secret'
+const appkeyProd = '12345appkey'
+const secretTest = '4b6fab7c41c8ad8a17cf36d4ed9dc72a'
+const appkeyTest = 'collect_wet_c937d9'
+// const secretTest = '12345secret'
 // export const appkeyTest = '12345appkey'
 
-export function getSigncodeTest (params: any, type: string) {
+const isProd = process.env.NODE_ENV === 'production'
+const appkey = isProd ? appkeyProd : appkeyTest
+const secret = isProd ? secretProd : secretTest
+function getSigncode (params: any, type: string) {
   let str = ''
-  if (Object.prototype.toString.call(params) === '[object FormData]') {
+  if (params instanceof FormData) {
     const obj = params.keys()
     const arr: string[] = []
     for (const b of obj) {
@@ -45,3 +51,4 @@ export function getSigncodeTest (params: any, type: string) {
   str = md5(str.toUpperCase())
   return str
 }
+export { appkey, getSigncode }
