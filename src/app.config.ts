@@ -11,9 +11,10 @@ export default defineAppConfig({
     {
       root: 'subpackages',
       pages: [
-        'login/index'
+        'login/index',
+        'pageA/index',
+        'pageB/index'
       ]
-      // independent: true
     }
   ],
   window: {

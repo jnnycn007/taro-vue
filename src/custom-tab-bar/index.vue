@@ -6,14 +6,13 @@ import { IconFont } from '@nutui/icons-vue-taro'
 
 const store = useSelectedStore()
 const { selected } = storeToRefs(store)
-console.log('selected', selected)
 
 const color = '#AAAAAA'
 const activeColor = '#000000'
 const tabBarList = [
   {
     text: 'Home',
-    icon: 'home',
+    icon: 'JD',
     url: '/pages/index/index'
   },
   {
@@ -29,12 +28,10 @@ const tabBarList = [
 ]
 function switchTab (index: number, url: string) {
   const isUserLoggedIn = Taro.getStorageSync('isUserLoggedIn') || false
-  const loginInterception = ['/pages/find/index', '/pages/my/index']
-  console.log('index', index)
-  console.log('url', url)
+  const loginInterception = ['/pages/my/index']
   if (!isUserLoggedIn && loginInterception.includes(url)) {
     Taro.navigateTo({
-      url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${encodeURIComponent(index)}`
+      url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${index}`
     })
   } else {
     store.setSelected(index)
@@ -62,13 +59,13 @@ function switchTab (index: number, url: string) {
   height: calc(100px + env(safe-area-inset-bottom));
   background: #FFFFFF;
   display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
   z-index: 999;
   border-top: 1px solid #E3E3E3;
   .m-tab-bar-item {
-    flex: 1;
     text-align: center;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     .u-icon {

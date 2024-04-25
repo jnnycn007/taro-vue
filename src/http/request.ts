@@ -33,7 +33,7 @@ export function request (params: RequestParams) {
       success: (res) => { // 接口调用成功的回调函数
         console.log('success', res)
         if (res.data.message.code === 0) {
-          resolve({...res.data.data, success: true })
+          resolve(res.data)
         } else {
           console.log('message', res.data.message.message)
           showErrorToast(res.data.message.message)
