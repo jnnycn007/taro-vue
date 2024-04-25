@@ -75,7 +75,7 @@ export default defineConfig(async (merge, { command, mode }) => {
           modifyVars: {
             themeColor: '#1677FF', // 主题色
             linkColor: '#008EEE', // 链接色
-            textColor: 'rgba(0, 0, 0, 0.88)'
+            textColor: 'rgba(0, 0, 0, 0.88)' // 文本基础色
           }
         }
       },

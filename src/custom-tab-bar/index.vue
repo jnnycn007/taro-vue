@@ -12,7 +12,7 @@ const activeColor = '#000000'
 const tabBarList = [
   {
     text: 'Home',
-    icon: 'JD',
+    icon: 'home',
     url: '/pages/index/index'
   },
   {

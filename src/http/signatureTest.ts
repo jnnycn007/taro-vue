@@ -1,6 +1,8 @@
 import md5 from 'md5'
-const secret = '12345secret'
-export const appkeyTest = '12345appkey'
+const secret = '4b6fab7c41c8ad8a17cf36d4ed9dc72a'
+export const appkeyTest = 'collect_wet_c937d9'
+// const secret = '12345secret'
+// export const appkeyTest = '12345appkey'
 
 export function getSigncodeTest (params: any, type: string) {
   let str = ''

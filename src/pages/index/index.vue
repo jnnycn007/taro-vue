@@ -31,7 +31,7 @@ const formData = reactive<FormType>({
   images: []
 })
 const uploadFileList = ref<any[]>([])
-  function uploadFile (src, taroUploadFile, options) {
+function uploadFile (src, taroUploadFile, options) {
   const fs = Taro.getFileSystemManager()
   fs.getFileInfo({
     filePath: src,
@@ -39,16 +39,16 @@ const uploadFileList = ref<any[]>([])
       console.log('getFileInfo res', res)
     }
   })
-  fs.readFile({
-    filePath: src, // 文件的临时路径
-    encoding: 'base64',
+  fs.readFile({ // 读取本地文件内容。单个文件大小上限为100M
+    filePath: src, // 要读取的文件的路径 (本地路径)
+    encoding: 'base64', // 指定读取文件的字符编码，如果不传 encoding，则以 ArrayBuffer 格式读取文件的二进制内容
     success: (res) => {
+      console.log('readFile', res)
       const data = {
-        decodeFile: res.data,
+        decodeFile: res.data, // 以base64字符串上传
         fileFormat: options.taroFilePath.slice(options.taroFilePath.lastIndexOf('.') + 1)
       }
       const uploadData = encryptData(data, 'post')
-      // console.log('readFile', res.data)
       const uploadTask = taroUploadFile({
         url: options.url,
         filePath: src,
@@ -108,8 +108,8 @@ function onStart (options) {
 }
 function onDelete ({index}) {
   console.log('delete', index)
-  formData.img.splice(index, 1)
-  console.log('img', formData.img)
+  formData.images.splice(index, 1)
+  console.log('images', formData.images)
   console.log('uploadFileList', uploadFileList.value)
 }
 function onOversize (files) {
@@ -120,11 +120,11 @@ function onSuccess ({data}) {
   const res = JSON.parse(data.data)
   console.log('res', res)
   if (res.message.code === 0) {
-    formData.img.push({
+    formData.images.push({
       name: res.data.fileUrl.split('/').pop(),
       url: res.data.fileUrl
     })
-    console.log('img', formData.img)
+    console.log('images', formData.images)
   } else {
     Taro.showToast({
       title: res.message.message,
@@ -152,8 +152,8 @@ function onFailure ({data}) {
 <template>
   <view>
     <text>首页</text>
-    <button @tap="onRoute">访问页面A</button>
-    <view class="m-image-wrap">
+    <!-- <button @tap="onRoute">访问页面A</button> -->
+    <!-- <view class="m-image-wrap">
       <view class="u-head">
         上传照片<text class="u-tip">（最多支持3张）</text>
       </view>
@@ -173,12 +173,12 @@ function onFailure ({data}) {
           @success="onSuccess"
           @failure="onFailure" />
       </view>
-    </view>
+    </view> -->
   </view>
 </template>
 <style lang="less">
 .m-image-wrap {
-  margin-top: 20px;
+  margin: 20px auto;
   padding: 24px 28px 40px;
   width: 690px;
   height: 349px;
