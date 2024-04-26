@@ -43,7 +43,6 @@ function getDetail () {
 </script>
 <template>
   <view>
-    <!-- <button type="primary">按钮</button> -->
     <Carousel :images="images" />
   </view>
 </template>

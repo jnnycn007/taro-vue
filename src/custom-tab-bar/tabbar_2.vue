@@ -1,20 +1,22 @@
 <script setup lang="ts">
+import { h } from 'vue'
 import { storeToRefs } from 'pinia'
 import Taro from '@tarojs/taro'
 import { useSelectedStore } from '@/stores/selected'
-import { IconFont } from '@nutui/icons-vue-taro'
+import { Home, Find, My } from '@nutui/icons-vue-taro'
+
+const store = useSelectedStore()
+const { selected } = storeToRefs(store)
 
 const systemInfo = Taro.getSystemInfoSync() // 获取系统信息
 const theme:'light'|'dark' = systemInfo.theme || 'light'
 console.log('theme', theme)
 
-const store = useSelectedStore()
-const { selected } = storeToRefs(store)
 const themeStyle = {
   light: {
     color: '#AAAAAA',
     activeColor: '#000000',
-    backgroundColor: '#F9F9F9'
+    backgroundColor: '#FFFFFF'
   },
   dark: {
     color: '#AAAAAA',
@@ -25,17 +27,17 @@ const themeStyle = {
 const tabBarList = [
   {
     title: 'Home',
-    icon: 'home',
+    icon: h(Home),
     url: '/pages/index/index'
   },
   {
     title: 'Find',
-    icon: 'find',
+    icon: h(Find),
     url: '/pages/find/index'
   },
   {
     title: 'My',
-    icon: 'my',
+    icon: h(My),
     url: '/pages/my/index'
   }
 ]
@@ -53,43 +55,24 @@ function switchTab (index: number, url: string) {
 }
 </script>
 <template>
-  <view class="m-tab-bar" :style="`background-color: ${themeStyle[theme].backgroundColor};`">
-    <view
-      class="m-tab-bar-item"
+  <nut-tabbar
+    :style="`--backgroundColor: ${themeStyle[theme].backgroundColor};`"
+    :unactive-color="themeStyle[theme].color"
+    :active-color="themeStyle[theme].activeColor"
+    bottom
+    safe-area-inset-bottom
+    placeholder
+    v-model="selected">
+    <nut-tabbar-item
       v-for="(tabBar, index) in tabBarList" :key="index"
+      :tab-title="tabBar.title"
+      :icon="tabBar.icon"
       @tap="switchTab(index, tabBar.url)">
-      <IconFont class="u-icon" :name="tabBar.icon" v-show="selected === index" :color="themeStyle[theme].activeColor" />
-      <IconFont class="u-icon" :name="tabBar.icon" v-show="selected !== index" :color="themeStyle[theme].color" />
-      <text class="u-view" :style="{ color: selected === index ? themeStyle[theme].activeColor : themeStyle[theme].color }">{{ tabBar.title }}</text>
-    </view>
-  </view>
+    </nut-tabbar-item>
+  </nut-tabbar>
 </template>
 <style lang="less">
-.m-tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: calc(100px + env(safe-area-inset-bottom));
-  background: #FFFFFF;
-  display: flex;
-  z-index: 999;
-  .m-tab-bar-item {
-    flex: 1;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    .u-icon {
-      font-size: 40px;
-      width: 68px;
-      height: 68px;
-    }
-    .u-view {
-      font-weight: 400;
-      font-size: 24px;
-      line-height: 32px;
-    }
-  }
+.nut-tabbar {
+  background-color: var(--backgroundColor);
 }
 </style>

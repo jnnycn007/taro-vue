@@ -35,5 +35,3 @@ function getPhoneNumber (e) {
     <button type="primary" open-type="getPhoneNumber" @getPhoneNumber="getPhoneNumber">微信一键登录</button>
   </view>
 </template>
-<style lang="less">
-</style>

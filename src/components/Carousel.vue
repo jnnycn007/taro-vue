@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Taro from '@tarojs/taro'
 interface Image {
   title?: string // 图片名称
@@ -18,7 +19,7 @@ interface Props {
   indicatorColor?: string // 指示点颜色
   indicatorActiveColor?: string // 当前选中的指示点颜色
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   images: () => [],
   height: 450,
   autoplay: true,
@@ -31,16 +32,19 @@ withDefaults(defineProps<Props>(), {
   indicatorColor: 'rgba(0, 0, 0, .3)',
   indicatorActiveColor: '#1677FF' // #000000
 })
-function onRoute (link: string) {
-  Taro.navigateTo({
-    url: link
-  })
+const showPreview = ref(false)
+
+function onPreview () {
+  showPreview.value = true
+}
+function onClose () {
+  showPreview.value = false
 }
 </script>
 <template>
   <swiper
-    :style="`height: ${height}rpx;`"
     class="m-swiper"
+    :style="`height: ${height}rpx;`"
     :interval="interval"
     :autoplay="autoplay"
     :circular="circular"
@@ -51,10 +55,18 @@ function onRoute (link: string) {
     :indicator-color="indicatorColor"
     :indicator-active-color="indicatorActiveColor"
     v-bind="$attrs">
-    <swiper-item @tap="image.link ? onRoute(image.link) : () => false" v-for="(image, index) in images" :key="index">
+    <swiper-item @tap="onPreview" v-for="(image, index) in images" :key="index">
       <image class="u-image" :src="image.src" />
     </swiper-item>
   </swiper>
+  <nut-image-preview
+    :show="showPreview"
+    :images="props.images"
+    is-Loop
+    pagination-visible
+    closeable
+    close-icon-position="top-left"
+    @close="onClose" />
 </template>
 <style lang="less">
 .m-swiper {
