@@ -1,3 +1,10 @@
+<script lang="ts">
+  export default {
+    options: {
+      addGlobalClass: true // 解决tabbar样式隔离导致的<IconFont />图标无法显示问题
+    }
+  }
+</script>
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import Taro from '@tarojs/taro'
@@ -6,11 +13,11 @@ import { IconFont } from '@nutui/icons-vue-taro'
 
 const systemInfo = Taro.getSystemInfoSync() // 获取系统信息
 const theme:'light'|'dark' = systemInfo.theme || 'light'
+console.log('systemInfo', systemInfo)
 console.log('theme', theme)
 
 const store = useSelectedStore()
 const { selected } = storeToRefs(store)
-
 const themeStyle = {
   light: {
     color: '#AAAAAA',
