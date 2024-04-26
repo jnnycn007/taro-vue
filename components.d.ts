@@ -7,6 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    // Carousel: typeof import('./src/components/Carousel.vue')['default']
+    Carousel: typeof import('./src/components/Carousel.vue')['default']
   }
 }
