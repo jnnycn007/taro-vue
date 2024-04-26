@@ -7,6 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Swiper: typeof import('./src/components/Swiper.vue')['default']
+    Carousel: typeof import('./src/components/Carousel.vue')['default']
   }
 }

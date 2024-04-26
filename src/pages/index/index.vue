@@ -1,6 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Taro, { usePullDownRefresh } from '@tarojs/taro'
 
+const images = ref([
+  {
+    src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrCyyAGpfYACOwAdvw7-U664.jpg'
+  },
+  {
+    src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC0-AN4AuAEG_1BH2UC4235.jpg'
+  },
+  {
+    src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC1-AI8CkACCfeeBYNiY179.jpg'
+  },
+  {
+    src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC22ARxJGACQ2VDqQ37M810.jpg'
+  },
+  {
+    src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC3mAVJ4NAFSY1hy3v_g975.jpg'
+  }
+])
 usePullDownRefresh(() => {
   setTimeout(() => {
     Taro.stopPullDownRefresh()
@@ -9,8 +27,7 @@ usePullDownRefresh(() => {
 </script>
 <template>
   <view>
-    <text>首页</text>
-    <Swiper />
+    <Carousel :images="images" />
   </view>
 </template>
 <style lang="less">
