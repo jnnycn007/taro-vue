@@ -7,6 +7,7 @@ interface Image {
 }
 interface Props {
   images: Image[] // 图片数组
+  height?: number // 走马灯宽度 
   autoplay?: boolean // 是否自动切换
   circular?: boolean // 是否采用衔接滑动
   vertical?: boolean // 滑动方向是否为纵向
@@ -19,6 +20,7 @@ interface Props {
 }
 withDefaults(defineProps<Props>(), {
   images: () => [],
+  height: 450,
   autoplay: true,
   circular: true,
   vertical: false,
@@ -37,6 +39,7 @@ function onRoute (link: string) {
 </script>
 <template>
   <swiper
+    :style="`height: ${height}rpx;`"
     class="m-swiper"
     :interval="interval"
     :autoplay="autoplay"
@@ -55,8 +58,6 @@ function onRoute (link: string) {
 </template>
 <style lang="less">
 .m-swiper {
-  width: 100%;
-  height: 450px;
   .u-image {
     width: 100%;
     height: 100%;
