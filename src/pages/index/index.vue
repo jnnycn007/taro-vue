@@ -25,7 +25,7 @@ const url = {
   detail: '/api/activity/getActivityTemplateByKeyWord'
 }
 useLoad(() => {
-  getDetail()
+  // getDetail()
 })
 usePullDownRefresh(async () => {
   await getDetail()
