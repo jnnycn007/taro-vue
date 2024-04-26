@@ -55,7 +55,9 @@ function onClose () {
     :indicator-color="indicatorColor"
     :indicator-active-color="indicatorActiveColor"
     v-bind="$attrs">
-    <swiper-item @tap="onPreview" v-for="(image, index) in images" :key="index">
+    <swiper-item
+      @tap="onPreview"
+      v-for="(image, index) in images" :key="index">
       <image class="u-image" :src="image.src" />
     </swiper-item>
   </swiper>

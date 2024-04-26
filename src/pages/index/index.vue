@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import Taro, { useLoad, usePullDownRefresh } from '@tarojs/taro'
 import { getAction } from '@/apis/index'
-import Carousel from '@/components/Carousel.vue'
+import carousel from '@/components/Carousel.vue'
 
 const images = ref([
   {
@@ -43,7 +43,7 @@ function getDetail () {
 </script>
 <template>
   <view>
-    <Carousel :images="images" />
+    <carousel :images="images" />
   </view>
 </template>
 <style lang="less">

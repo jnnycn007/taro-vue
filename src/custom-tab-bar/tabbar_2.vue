@@ -42,16 +42,16 @@ const tabBarList = [
   }
 ]
 function switchTab (index: number, url: string) {
-  const isUserLoggedIn = Taro.getStorageSync('isUserLoggedIn') || false
-  const loginInterception = ['/pages/my/index']
-  if (!isUserLoggedIn && loginInterception.includes(url)) {
-    Taro.navigateTo({
-      url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${index}`
-    })
-  } else {
-    store.setSelected(index)
-    Taro.switchTab({ url })
-  }
+  // const isUserLoggedIn = Taro.getStorageSync('isUserLoggedIn') || false
+  // const loginInterception = ['/pages/my/index']
+  // if (!isUserLoggedIn && loginInterception.includes(url)) {
+  //   Taro.navigateTo({
+  //     url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${index}`
+  //   })
+  // } else {
+  store.setSelected(index)
+  Taro.switchTab({ url })
+  // }
 }
 </script>
 <template>
