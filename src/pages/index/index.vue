@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Taro, { usePullDownRefresh } from '@tarojs/taro'
+import Taro, { useLoad, usePullDownRefresh } from '@tarojs/taro'
+import { getAction } from '@/apis/index'
 
 const images = ref([
   {
@@ -19,11 +20,25 @@ const images = ref([
     src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC3mAVJ4NAFSY1hy3v_g975.jpg'
   }
 ])
-usePullDownRefresh(() => {
-  setTimeout(() => {
-    Taro.stopPullDownRefresh()
-  }, 1000)
+const url = {
+  detail: '/api/activity/getActivityTemplateByKeyWord'
+}
+useLoad(() => {
+  getDetail()
 })
+usePullDownRefresh(async () => {
+  await getDetail()
+  Taro.stopPullDownRefresh()
+})
+const detailData = ref()
+function getDetail () {
+  getAction(url.detail, { keyWord: 'collectWine' }).then((res: any) => {
+    console.log('detail', res)
+    detailData.value = res.data
+  }).catch((err) => {
+    console.log('err', err)
+  })
+}
 </script>
 <template>
   <view>
