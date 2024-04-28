@@ -90,8 +90,8 @@ function onClose () {
 <style lang="less">
 .nut-swiper-pagination .h5-i {
   width: 48px;
-  height: 12px;
-  border-radius: 8px;
+  height: 10px;
+  border-radius: 6px;
   &:not(:last-child) {
     margin-right: 20px;
   }
