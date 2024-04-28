@@ -33,4 +33,5 @@ export default {
     //     }))
     // }
   }
-} satisfies UserConfigExport
+}
+// } satisfies UserConfigExport

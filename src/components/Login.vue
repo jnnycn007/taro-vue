@@ -54,21 +54,20 @@ function getPhoneNumber (e) {
 </template>
 <style lang="less">
 .m-view {
-  padding: 240px 30px calc(30px + env(safe-area-inset-bottom));
-  height: 100%;
-  background: #FFF;
+  padding: 0 30px calc(30px + env(safe-area-inset-bottom));
   text-align: center;
   .u-logo {
-    margin: 240px auto;
-    width: 500px;
-    height: 500px;
+    margin: 180px auto 160px;
+    width: 600px;
+    height: 480px;
+    border-radius: 48px;
   }
   .u-btn {
-    width: 622px;
+    width: 600px;
     height: 88px;
     line-height: 88px;
     border-radius: 44px;
-    background: #1AAD19;
+    background: @themeColor;
     font-weight: 400;
     font-size: 36px;
     color: #FFFFFF;
