@@ -69,7 +69,7 @@ function onClose () {
     closeable
     close-icon-position="top-left"
     @close="onClose" />
-</template>
+</template>4
 <style lang="less">
 .m-swiper {
   .u-image {

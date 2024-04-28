@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
 import Taro from '@tarojs/taro'
-import { useSelectedStore } from '@/stores/selected'
 import { IconFont } from '@nutui/icons-vue-taro'
+import { storeToRefs } from 'pinia'
+import { useSelectedStore } from '@/stores/selected'
+
+
+const store = useSelectedStore()
+const { selected } = storeToRefs(store)
 
 const systemInfo = Taro.getSystemInfoSync() // 获取系统信息
 const theme:'light'|'dark' = systemInfo.theme || 'light'
 console.log('theme', theme)
-
-const store = useSelectedStore()
-const { selected } = storeToRefs(store)
 
 const themeStyle = {
   light: {
@@ -41,16 +42,16 @@ const tabBarList = [
   }
 ]
 function switchTab (index: number, url: string) {
-  // const isUserLoggedIn = Taro.getStorageSync('isUserLoggedIn') || false
-  // const loginInterception = ['/pages/my/index']
-  // if (!isUserLoggedIn && loginInterception.includes(url)) {
-  //   Taro.navigateTo({
-  //     url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${index}`
-  //   })
-  // } else {
-  store.setSelected(index)
-  Taro.switchTab({ url })
-  // }
+  const isAuthorized = Taro.getStorageSync('code') || false
+  const authorizeInterception = ['/pages/my/index']
+  if (!isAuthorized && authorizeInterception.includes(url)) {
+    Taro.navigateTo({
+      url: `/subpackages/login/index?redirect=${encodeURIComponent(url)}&index=${index}`
+    })
+  } else {
+    store.setSelected(index)
+    Taro.switchTab({ url })
+  }
 }
 </script>
 <template>
