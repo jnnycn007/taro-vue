@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Taro from '@tarojs/taro'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 interface Image {
   title?: string // 图片名称
@@ -9,7 +9,6 @@ interface Image {
 }
 interface Props {
   images: Image[] // 图片数组
-  width?: number|string // 轮播卡片的宽度
   height?: number|string // 轮播卡片的高度
   direction?: 'horizontal'|'vertical' // 轮播方向
   mode?: string // 图片裁剪、缩放的模式，与微信小程序 <image> 标签 mode 属性一致
@@ -25,12 +24,11 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   images: () => [],
-  width: '100%',
   height: 'calc(100vh - 100rpx - env(safe-area-inset-bottom))',
   direction: 'horizontal',
   mode: 'aspectFill', // 缩放模式，保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。
   loop: true,
-  duration: 1000,
+  duration: 500,
   autoPlay: 3000,
   initPage: 0,
   touchable: true,
@@ -38,6 +36,12 @@ const props = withDefaults(defineProps<Props>(), {
   paginationUnselectedColor: 'rgba(0, 0, 0, .3)',
   paginationColor: '#FF5B29',
   isPreview: false
+})
+const CarouselHeight = computed(() => {
+  if (typeof props.height === 'number') {
+    return props.height + 'rpx'
+  }
+  return props.height
 })
 function onRoute (url: string) {
   Taro.navigateTo({
@@ -56,8 +60,7 @@ function onClose () {
 </script>
 <template>
   <nut-swiper
-    :width="width"
-    :height="height"
+    :style="`height: ${CarouselHeight};`"
     :direction="direction"
     :loop="loop"
     :duration="duration"
@@ -67,8 +70,7 @@ function onClose () {
     :pagination-visible="paginationVisible"
     :pagination-unselected-color="paginationUnselectedColor"
     :pagination-color="paginationColor"
-    v-bind="$attrs"
-  >
+    v-bind="$attrs">
     <nut-swiper-item v-for="(image, index) in images" :key="index">
       <view class="m-image" @tap="image.link ? onRoute(image.link) : () => false">
         <image @tap="isPreview ? onPreview(index) : () => false" class="u-image" :src="image.src" :mode="mode" />
@@ -86,6 +88,14 @@ function onClose () {
     @close="onClose" />
 </template>
 <style lang="less">
+.nut-swiper-pagination .h5-i {
+  width: 48px;
+  height: 12px;
+  border-radius: 8px;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
 .m-image {
   width: 100%;
   height: 100%;

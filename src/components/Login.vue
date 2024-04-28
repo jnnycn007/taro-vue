@@ -58,8 +58,8 @@ function getPhoneNumber (e) {
   text-align: center;
   .u-logo {
     margin: 180px auto 160px;
-    width: 600px;
-    height: 480px;
+    width: 640px;
+    height: 512px;
     border-radius: 48px;
   }
   .u-btn {

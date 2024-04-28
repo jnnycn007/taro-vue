@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import Taro, { useLoad, usePullDownRefresh } from '@tarojs/taro'
 import { getAction } from '@/apis/index'
-import Carousel from '@/components/Carousel.vue'
+// import Carousel from '@/components/Carousel.vue'
 
 const images = ref([
   {
