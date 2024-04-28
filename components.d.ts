@@ -9,5 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     Carousel: typeof import('./src/components/Carousel.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
+    NutImagePreview: typeof import('@nutui/nutui-taro')['ImagePreview']
   }
 }
