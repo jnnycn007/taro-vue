@@ -4,7 +4,7 @@ import devConfig from './dev'
 import prodConfig from './prod'
 import Components from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/auto-import-resolver'
-import path from 'path'
+// import path from 'path'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 // @ts-ignore

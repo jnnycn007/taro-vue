@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<Props>(), {
   vertical: false,
   interval: 3000,
   duration: 1000,
-  easingFunction: 'easeInOutCubic',
+  easingFunction: 'default',
   indicatorDots: true,
   indicatorColor: 'rgba(0, 0, 0, .3)',
   indicatorActiveColor: '#1677FF', // #000000
