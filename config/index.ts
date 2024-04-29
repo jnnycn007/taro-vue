@@ -34,8 +34,8 @@ export default defineConfig(async (merge, { command, mode }) => {
     defineConstants: {
     },
     alias: {
-      // '@/apis': path.resolve(__dirname, '..', 'src/apis'),
       // '@/images': path.resolve(__dirname, '..', 'src/images'),
+      // '@/components': path.resolve(__dirname, '..', 'src/components'),
       // '@/utils': path.resolve(__dirname, '..', 'src/utils')
     },
     copy: {

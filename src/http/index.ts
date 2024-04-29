@@ -1,4 +1,4 @@
-import { request } from '@/http/request'
+import { request } from './request'
 
 export function getAction (url: string, parameter: any, args = {}) {
   return request({
