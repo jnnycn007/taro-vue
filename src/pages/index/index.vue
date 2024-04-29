@@ -32,7 +32,7 @@ useLoad(() => {
   // getDetail()
 })
 usePullDownRefresh(async () => {
-  await getDetail()
+  // await getDetail()
   Taro.stopPullDownRefresh()
 })
 const detailData = ref()
