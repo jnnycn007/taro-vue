@@ -24,7 +24,7 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   images: () => [],
-  height: 'calc(100vh - 100rpx - env(safe-area-inset-bottom))',
+  height: '100vh',
   direction: 'horizontal',
   mode: 'aspectFill', // 缩放模式，保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。
   loop: true,
@@ -48,6 +48,7 @@ function onRoute (url: string) {
     url: url
   })
 }
+const isWeapp = process.env.TARO_ENV === 'weapp'
 const showPreview = ref(false)
 const showIndex = ref(0)
 function onPreview (index: number) {
@@ -60,6 +61,7 @@ function onClose () {
 </script>
 <template>
   <nut-swiper
+    class="m-swiper"
     :style="`height: ${CarouselHeight};`"
     :direction="direction"
     :loop="loop"
@@ -78,7 +80,7 @@ function onClose () {
       </nut-swiper-item>
   </nut-swiper>
   <nut-image-preview
-    v-if="preview"
+    v-if="isWeapp && preview"
     :init-no="showIndex"
     :show="showPreview"
     :images="props.images"
@@ -97,15 +99,18 @@ function onClose () {
     margin-right: 20px;
   }
 }
-.m-image {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .u-image {
+.m-swiper {
+  max-height: calc(100vh - 100px - env(safe-area-inset-bottom));
+  .m-image {
     width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .u-image {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>
