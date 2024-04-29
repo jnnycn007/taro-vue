@@ -46,5 +46,5 @@ function getDetail () {
 }
 </script>
 <template>
-  <NutCarousel :images="images" />
+  <Carousel :images="images" />
 </template>
