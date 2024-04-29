@@ -28,8 +28,7 @@ export default defineConfig(async (merge, { command, mode }) => {
       828: 1.81 / 2
     },
     sourceRoot: 'src',
-    // outputRoot: 'dist',
-    outputRoot: `dist/${process.env.TARO_ENV}`,
+    outputRoot: 'dist',
     // 开启 HTML 插件
     plugins: ['@tarojs/plugin-html'],
     defineConstants: {

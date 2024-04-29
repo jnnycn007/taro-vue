@@ -1,5 +1,5 @@
 {
-    "miniprogramRoot": "dist/weapp/",
+    "miniprogramRoot": "dist/",
     "projectname": "taro-vue",
     "description": "taro@3.x+vue@3.x+ts+less开发",
     "appid": "wx82b6e15d4069f9c7",
@@ -19,7 +19,7 @@
     },
     "compileType": "miniprogram",
     "libVersion": "3.4.1",
-    "srcMiniprogramRoot": "dist/weapp/",
+    "srcMiniprogramRoot": "dist/",
     "packOptions": {
         "ignore": [],
         "include": []

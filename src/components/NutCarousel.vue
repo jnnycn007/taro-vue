@@ -20,7 +20,7 @@ interface Props {
   paginationVisible?: boolean // 分页指示器是否展示
   paginationUnselectedColor?: string // 分页指示器没有选中的颜色
   paginationColor?: string // 分页指示器选中的颜色
-  isPreview?: boolean // 是否开启图片预览
+  preview?: boolean // 是否开启图片预览
 }
 const props = withDefaults(defineProps<Props>(), {
   images: () => [],
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
   paginationVisible: true,
   paginationUnselectedColor: 'rgba(0, 0, 0, .3)',
   paginationColor: '#FF5B29',
-  isPreview: false
+  preview: false
 })
 const CarouselHeight = computed(() => {
   if (typeof props.height === 'number') {
@@ -73,11 +73,12 @@ function onClose () {
     v-bind="$attrs">
     <nut-swiper-item v-for="(image, index) in images" :key="index">
       <view class="m-image" @tap="image.link ? onRoute(image.link) : () => false">
-        <image @tap="isPreview ? onPreview(index) : () => false" class="u-image" :src="image.src" :mode="mode" />
+        <image @tap="preview ? onPreview(index) : () => false" class="u-image" :src="image.src" :mode="mode" />
       </view>
       </nut-swiper-item>
   </nut-swiper>
   <nut-image-preview
+    v-if="preview"
     :init-no="showIndex"
     :show="showPreview"
     :images="props.images"

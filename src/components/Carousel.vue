@@ -20,7 +20,7 @@ interface Props {
   indicatorDots?: boolean // 是否显示面板指示点
   indicatorColor?: string // 指示点颜色
   indicatorActiveColor?: string // 当前选中的指示点颜色
-  isPreview?: boolean // 是否开启图片预览
+  preview?: boolean // 是否开启图片预览
 }
 const props = withDefaults(defineProps<Props>(), {
   images: () => [],
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
   indicatorDots: true,
   indicatorColor: 'rgba(0, 0, 0, .3)',
   indicatorActiveColor: '#1677FF', // #000000
-  isPreview: false
+  preview: false
 })
 const CarouselHeight = computed(() => {
   if (typeof props.height === 'number') {
@@ -73,11 +73,12 @@ function onClose () {
     v-bind="$attrs">
     <swiper-item v-for="(image, index) in images" :key="index">
       <view class="m-image" @tap="image.link ? onRoute(image.link) : () => false">
-        <image @tap="isPreview ? onPreview(index) : () => false" class="u-image" :src="image.src" :mode="mode" />
+        <image @tap="preview ? onPreview(index) : () => false" class="u-image" :src="image.src" :mode="mode" />
       </view>
     </swiper-item>
   </swiper>
   <nut-image-preview
+    v-if="preview"
     :init-no="showIndex"
     :show="showPreview"
     :images="props.images"
@@ -100,3 +101,4 @@ function onClose () {
   }
 }
 </style>
+  
