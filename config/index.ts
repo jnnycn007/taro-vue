@@ -4,7 +4,7 @@ import devConfig from './dev'
 import prodConfig from './prod'
 import Components from 'unplugin-vue-components/webpack'
 import NutUIResolver from '@nutui/auto-import-resolver'
-import path from 'path'
+// import path from 'path'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 // @ts-ignore
@@ -28,7 +28,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       828: 1.81 / 2
     },
     sourceRoot: 'src',
-    outputRoot: 'dist',
+    // outputRoot: 'dist',
+    outputRoot: `dist/${process.env.TARO_ENV}`,
     // 开启 HTML 插件
     plugins: ['@tarojs/plugin-html'],
     defineConstants: {
@@ -45,7 +46,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       }
     },
     framework: 'vue3',
-    /* 解决引入@nutui/icons-vue-taro后使用webpack5编辑报错
+    /*
+      解决引入@nutui/icons-vue-taro后使用webpack5编辑报错
       app.js错误:
       Error: module 'prebundle/vendors-node_modules_taro_weapp_prebundle_nutui_icons-vue-taro_js.wxss.js' is not defined,
       require args is './prebundle/vendors-node_modules_taro_weapp_prebundle_nutui_icons-vue-taro_js.wxss'
@@ -124,6 +126,15 @@ export default defineConfig(async (merge, { command, mode }) => {
         filename: 'css/[name].[hash].css',
         chunkFilename: 'css/[name].[chunkhash].css'
       },
+      lessLoaderOption: { // 配置全局less变量
+        lessOptions: {
+          modifyVars: {
+            themeColor: '#1677FF', // 主题色
+            linkColor: '#008EEE', // 链接色
+            textColor: 'rgba(0, 0, 0, 0.88)' // 文本基础色
+          }
+        }
+      },
       postcss: {
         autoprefixer: {
           enable: true,
@@ -136,6 +147,9 @@ export default defineConfig(async (merge, { command, mode }) => {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
+      },
+      devServer: {
+        port: 10086
       }
     },
     rn: {

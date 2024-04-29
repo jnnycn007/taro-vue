@@ -11,5 +11,4 @@ export default {
   },
   mini: {},
   h5: {}
-}
-// } satisfies UserConfigExport
+} satisfies UserConfigExport
