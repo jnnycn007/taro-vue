@@ -49,7 +49,7 @@ const tabBarList = [
   }
 ]
 function switchTab (index: number, url: string) {
-  const isAuthorized = Taro.getStorageSync('code') || false
+  const isAuthorized = Taro.getStorageSync('isAuthorized') || false
   const authorizeInterception = ['/pages/my/index']
   if (!isAuthorized && authorizeInterception.includes(url)) {
     Taro.navigateTo({

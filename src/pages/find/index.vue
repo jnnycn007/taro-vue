@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-// import NutCarousel from '@/components/NutCarousel.vue'
+import NutCarousel from '@/components/NutCarousel.vue'
 
 const images = ref([
   {
