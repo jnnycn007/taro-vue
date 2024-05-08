@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Taro, { useLoad, usePullDownRefresh } from '@tarojs/taro'
-import { getAction } from '@/http/index'
-import Carousel from '@/components/Carousel.vue'
+import Taro, { useLoad, usePullDownRefresh, useShareAppMessage } from '@tarojs/taro'
+// import Carousel from '@/components/Carousel.vue'
 
 const images = ref([
   {
@@ -25,26 +24,25 @@ const images = ref([
   //   src: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrC3mAVJ4NAFSY1hy3v_g975.jpg'
   // }
 ])
-const url = {
-  detail: '/api/activity/getActivityTemplateByKeyWord'
-}
 useLoad(() => {
-  // getDetail()
 })
 usePullDownRefresh(async () => {
   // await getDetail()
   Taro.stopPullDownRefresh()
 })
-const detailData = ref()
-function getDetail () {
-  getAction(url.detail, { keyWord: 'collectWine' }).then((res: any) => {
-    console.log('detail', res)
-    detailData.value = res.data
-  }).catch((err) => {
-    console.log('err', err)
-  })
-}
+useShareAppMessage((res) => {
+  console.log('share', res)
+  if (res.from === 'button') {
+    // 来自页面内转发按钮
+    console.log(res.target)
+  }
+  return {
+    title: '纵横命运之上',
+    path: '/page/index/index'
+  }
+})
 </script>
 <template>
-  <Carousel :images="images" />
+  <button open-type="share">分享</button>
+  <!-- <Carousel :images="images" /> -->
 </template>
