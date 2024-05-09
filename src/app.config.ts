@@ -17,6 +17,11 @@ export default defineAppConfig({
       ]
     }
   ],
+  permission: {
+    'scope.userLocation': {
+      desc: '你的位置信息将用于小程序位置接口的效果展示'
+    }
+  },
   window: {
     // backgroundColor: '@bgColor', // 窗口的背景色
     backgroundColorTop: '@bgColorTop', // 顶部窗口的背景色，仅 iOS 支持，默认 #ffffff，即loading背景色

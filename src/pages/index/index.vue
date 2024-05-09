@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Taro, { useLoad, usePullDownRefresh, useShareAppMessage } from '@tarojs/taro'
-// import Carousel from '@/components/Carousel.vue'
+import Carousel from '@/components/Carousel.vue'
 
 const images = ref([
   {
@@ -43,6 +43,5 @@ useShareAppMessage((res) => {
 })
 </script>
 <template>
-  <button open-type="share">分享</button>
-  <!-- <Carousel :images="images" /> -->
+  <Carousel :images="images" />
 </template>
