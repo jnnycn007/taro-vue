@@ -10,5 +10,6 @@ declare module 'vue' {
     Carousel: typeof import('./src/components/Carousel.vue')['default']
     Login: typeof import('./src/components/Login.vue')['default']
     NutCarousel: typeof import('./src/components/NutCarousel.vue')['default']
+    NutImagePreview: typeof import('@nutui/nutui-taro')['ImagePreview']
   }
 }
