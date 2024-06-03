@@ -11,9 +11,7 @@ export default defineAppConfig({
     {
       root: 'subpackages',
       pages: [
-        'login/index',
-        'pageA/index',
-        'pageB/index'
+        'login/index'
       ]
     }
   ],

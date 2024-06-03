@@ -11,5 +11,7 @@ declare module 'vue' {
     Login: typeof import('./src/components/Login.vue')['default']
     NutCarousel: typeof import('./src/components/NutCarousel.vue')['default']
     NutImagePreview: typeof import('@nutui/nutui-taro')['ImagePreview']
+    NutSwiper: typeof import('@nutui/nutui-taro')['Swiper']
+    NutSwiperItem: typeof import('@nutui/nutui-taro')['SwiperItem']
   }
 }

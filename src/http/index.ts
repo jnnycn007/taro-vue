@@ -1,6 +1,6 @@
 import { request } from './request'
 
-export function getAction (url: string, parameter: any, args = {}) {
+export function getAction (url: string, parameter = {}, args = {}) {
   return request({
     url: url,
     method: 'GET',
@@ -8,7 +8,7 @@ export function getAction (url: string, parameter: any, args = {}) {
     args: args
   })
 }
-export function postAction (url: string, parameter: any, args = {}) {
+export function postAction (url: string, parameter = {}, args = {}) {
   return request({
     url: url,
     method: 'POST',
@@ -19,4 +19,3 @@ export function postAction (url: string, parameter: any, args = {}) {
     }
   })
 }
-
