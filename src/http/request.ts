@@ -1,5 +1,4 @@
 import Taro from '@tarojs/taro'
-import { encryptData } from './encrypt'
 
 console.log('NODE_ENV', process.env.NODE_ENV)
 console.log('TARO_APP_PROXY', process.env.TARO_APP_PROXY)
@@ -14,6 +13,12 @@ interface RequestParams {
   loadingTitle?: string
   [key: string]: any
 }
+function requestInterceptor (method: RequestParams['method'], data: any) {
+  console.log('method', method)
+  console.log('data', data)
+  // 添加公共参数
+  return data
+}
 export function request (params: RequestParams) {
   const { url, method, data, header, args: { timeout = 6000, loadingTitle = '', toastDuration = 1500 } } = params
   Taro.showLoading({
@@ -22,7 +27,7 @@ export function request (params: RequestParams) {
   })
   return new Promise(resolve =>{
     Taro.request({
-      data: encryptData(data, method),
+      data: requestInterceptor(method, data),
       url: baseUrl + url,
       method: method,
       timeout: timeout,

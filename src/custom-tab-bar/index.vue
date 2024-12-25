@@ -6,6 +6,7 @@
   }
 </script>
 <script setup lang="ts">
+import { reactive } from 'vue'
 import Taro from '@tarojs/taro'
 import { IconFont } from '@nutui/icons-vue-taro'
 import { storeToRefs } from 'pinia'
@@ -14,9 +15,13 @@ import { useSelectedStore } from '@/stores/selected'
 const store = useSelectedStore()
 const { selected } = storeToRefs(store)
 
-const systemInfo = Taro.getSystemInfoSync() // 获取系统信息
-const theme:'light'|'dark' = systemInfo.theme || 'light'
-console.log('systemInfo', systemInfo)
+const deviceInfo = Taro.getDeviceInfo() // 获取设备基础信息
+const windowInfo = Taro.getWindowInfo() // 获取窗口信息
+const appBaseInfo = Taro.getAppBaseInfo() // 获取微信APP基础信息
+const theme:'light'|'dark' = appBaseInfo.theme || 'light'
+console.log('deviceInfo', deviceInfo)
+console.log('windowInfo', windowInfo)
+console.log('appBaseInfo', appBaseInfo)
 console.log('theme', theme)
 
 const themeStyle = {
@@ -31,7 +36,12 @@ const themeStyle = {
     backgroundColor: 'rgba(0, 0, 0, .65)'
   }
 }
-const tabBarList = [
+interface TabBar {
+  title: string
+  icon: string
+  url: string
+}
+const tabBarList = reactive<TabBar[]>([
   {
     title: 'Home',
     icon: 'home',
@@ -47,7 +57,7 @@ const tabBarList = [
     icon: 'my',
     url: '/pages/my/index'
   }
-]
+])
 function switchTab (index: number, url: string) {
   const isAuthorized = Taro.getStorageSync('isAuthorized') || false
   const authorizeInterception = ['/pages/my/index']
