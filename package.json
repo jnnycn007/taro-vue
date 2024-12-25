@@ -39,6 +39,7 @@
 		"ios >= 8"
 	],
 	"author": "theMuseCatcher",
+  "license": "MIT",
 	"dependencies": {
 		"@babel/runtime": "^7.26.0",
 		"@nutui/icons-vue-taro": "^0.0.9",
