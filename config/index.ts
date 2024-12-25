@@ -47,7 +47,7 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     framework: 'vue3',
     /*
-      解决引入@nutui/icons-vue-taro后使用webpack5编辑报错
+      解决引入 @nutui/icons-vue-taro 后使用 webpack5 编辑报错
       app.js错误:
       Error: module 'prebundle/vendors-node_modules_taro_weapp_prebundle_nutui_icons-vue-taro_js.wxss.js' is not defined,
       require args is './prebundle/vendors-node_modules_taro_weapp_prebundle_nutui_icons-vue-taro_js.wxss'
