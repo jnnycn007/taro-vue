@@ -2,7 +2,7 @@
 	"name": "taro-vue",
 	"version": "1.0.0",
 	"private": true,
-	"description": "基于 Taro4 + Vue3 + TypeScript + Vite + Less + NutUI 开发的模板项目",
+	"description": "基于 Taro4 + Vue3 + TypeScript + Webpack5 + Less + NutUI 开发的模板项目",
 	"templateInfo": {
 		"name": "default",
 		"typescript": true,
