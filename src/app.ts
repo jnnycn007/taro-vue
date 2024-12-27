@@ -23,7 +23,7 @@ if (process.env.TARO_ENV === 'weapp') {
           console.log(res.target)
         }
         return {
-          title: '纵横命运之上', // 转发标题 当前小程序名称
+          title: '给岁月以文明，给时光以生命', // 转发标题 用于添加描述内容
           // path: '/pages/index/index', // 转发路径，当前页面 path ，必须是以 / 开头的完整路径
           // 使用默认截图 设置转发显示的图片，可以使用网络图片 自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径。支持 PNG 及 JPG 。显示图片长宽比是 5:4
           imageUrl: 'https://cdn.jsdelivr.net/gh/themusecatcher/resources@0.1.3/avatar.jpeg'
