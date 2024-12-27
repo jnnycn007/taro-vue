@@ -22,6 +22,7 @@ usePullDownRefresh(async () => {
   // await getDetail()
   Taro.stopPullDownRefresh()
 })
+// 自定义页面转发分享
 useShareAppMessage((res) => {
   console.log('share', res)
   if (res.from === 'button') {
@@ -29,7 +30,7 @@ useShareAppMessage((res) => {
     console.log(res.target)
   }
   return {
-    title: '纵横命运之上',
+    title: 'Tesla',
     path: '/pages/index/index'
   }
 })
