@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Taro from '@tarojs/taro'
 import { ref, computed } from 'vue'
-
 interface Image {
   title?: string // 图片名称
   src: string // 图片地址

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Taro from '@tarojs/taro'
 import { ref, computed } from 'vue'
-
 interface Image {
   title?: string // 图片名称
   src: string // 图片地址
@@ -9,7 +8,7 @@ interface Image {
 }
 interface Props {
   images: Image[] // 图片数组
-  height?: number|string // 走马灯宽度 
+  height?: number|string // 走马灯宽度
   mode?: string // 图片裁剪、缩放的模式，与微信小程序 <image> 标签 mode 属性一致
   autoplay?: boolean // 是否自动切换
   circular?: boolean // 是否采用衔接滑动
@@ -106,4 +105,3 @@ function onClose () {
   }
 }
 </style>
-  

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import NutCarousel from '@/components/NutCarousel.vue'
-
-const images = ref([
+const images = reactive([
   {
     src: 'https://s1.xiaomiev.com/activity-outer-assets/0328/images/home/section1x760.jpg?'
   },

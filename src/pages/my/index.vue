@@ -2,7 +2,7 @@
 </script>
 <template>
   <view class="m-view">
-    <image class="u-img" src="https://download.jinhui365.cn/group1/M00/06/27/CgABcmYvXyiADzTKAA4BF_aRMmQ863.jpg" />
+    <image class="u-img" src="https://cdn.jsdelivr.net/gh/themusecatcher/resources@0.1.3/avatar.jpeg" />
   </view>
 </template>
 <style lang="less">

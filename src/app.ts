@@ -2,7 +2,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import './app.less'
-// import LOGO from './images/logo.jpg'
 
 if (process.env.TARO_ENV === 'weapp') {
   interface ShareType {
@@ -27,8 +26,7 @@ if (process.env.TARO_ENV === 'weapp') {
           title: '纵横命运之上', // 转发标题 当前小程序名称
           // path: '/pages/index/index', // 转发路径，当前页面 path ，必须是以 / 开头的完整路径
           // 使用默认截图 设置转发显示的图片，可以使用网络图片 自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径。支持 PNG 及 JPG 。显示图片长宽比是 5:4
-          imageUrl: 'https://download.jinhui365.cn/group1/M00/06/25/CgABcmYrDDKAY9ZUAAJ5DcWHiRA418.jpg', // 相对路径图片
-          // imageUrl: 'https://image-path.png' // 网络图片
+          imageUrl: 'https://cdn.jsdelivr.net/gh/themusecatcher/resources@0.1.3/avatar.jpeg'
         }
       }
     }

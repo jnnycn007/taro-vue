@@ -59,7 +59,7 @@ export default defineConfig(async (merge, { command, mode }) => {
       }
     },
     cache: { // Webpack5 持久化缓存配置。默认不开启持久化缓存功能。但当开发者能处理好缓存策略时，强烈建议开启缓存，这能大大提高二次编译速度。
-      enable: true // 是否开启持久化缓存。参考：https://docs.taro.zone/docs/config-detail#cacheenable
+      enable: false // 是否开启持久化缓存。参考：https://docs.taro.zone/docs/config-detail#cacheenable
     },
     mini: {
       webpackChain(chain) {

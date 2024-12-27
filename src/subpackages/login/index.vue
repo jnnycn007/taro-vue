@@ -10,7 +10,6 @@ import Login from '@/components/Login.vue'
 .m-view-wrap {
   width: 100%;
   height: 100vh;
-  background: url('https://download.jinhui365.cn/group1/M00/06/27/CgABcmYvU1-AIPyyAAlzyUwve24532.jpg') no-repeat center;
   background-size: cover;
 }
 </style>
