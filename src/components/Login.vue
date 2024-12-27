@@ -18,7 +18,7 @@ useLoad((options) => {
 })
 function getPhoneNumber (e) {
   console.log('e', e)
-  console.log('code', e.detail.code)
+  console.log('detail', e.detail)
   const code = e.detail.code
   if (code) { // 授权成功
     Taro.setStorageSync('code', code)
