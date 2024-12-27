@@ -38,12 +38,8 @@ export function request (params: RequestParams) {
       success: (res) => { // 接口调用成功的回调函数
         Taro.hideLoading()
         console.log('success', res)
-        if (res.data.message.code === 0) { // 具体参考接口响应的数据结构定义
-          if (Array.isArray(res.data.data)) {
-            resolve(res.data.data)
-          } else {
-            resolve({...res.data.data, success: true })
-          }
+        if (res.data.message.code === 0) { // 具体逻辑可参考接口返回的数据结构
+          resolve({...res.data, success: true })
         } else {
           console.log('message', res.data.message.message)
           resolve({ message: res.data.message.message, success: false })
