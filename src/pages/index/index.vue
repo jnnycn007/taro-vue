@@ -4,16 +4,16 @@ import Taro, { useLoad, usePullDownRefresh, useShareAppMessage } from '@tarojs/t
 import Carousel from '@/components/Carousel.vue'
 const images = reactive([
   {
-    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-Y-Mobile-CN-v2.png'
+    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-2-Hero-Mobile-CN.png'
   },
   {
-    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-3-Mobile-LHD-v2.jpg'
+    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-2-Redesigned-Mobile.png'
   },
   {
-    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1624,w_750,c_fit,f_auto,q_auto:best/Model-S-homepage-mobile'
+    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-2-Along-the-Way-Mobile-CN.png'
   },
   {
-    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1700,w_800,c_fit,f_auto,q_auto:best/Homepage-Model-X-Mobile-LHD_001'
+    src: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Model-Y-2-End-of-Page-Mobile-CN.png'
   }
 ])
 useLoad(() => {
